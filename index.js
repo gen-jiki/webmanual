@@ -1,6 +1,7 @@
 let hoge = document.getElementById("hogehoge");
 let hoge2 = document.getElementById("hogehoge2");
 let element =  document.getElementById("myDiv");
+let divElements = document.getElementsByTagName('div');
 // hoge.textContent = "Hello, js!"
 
 let image = "";
@@ -26,6 +27,12 @@ function piyo(geko) {
 function downloadArrayAsTextFile() {
     // ダウンロードする配列データ
     var dataArray = ["Item 1", "Item 2", "Item 3", "Item 4"];
+
+    for (let i = 1; i < divElements.length-2; i++) {
+        let divContent = divElements[i].innerHTML; // もしくは innerHTML
+        console.log("Div " + (i + 1) + " の中身: " + divContent);
+        lislis[i-1] = divContent;
+    }
 
     // 配列データをテキストに変換
     var textData = lislis.join('\n');
@@ -68,6 +75,7 @@ const selectFile = () => {
             const paragraph = document.createElement("div");
             // paragraph.innerHTML = item.split(",").slice(2).join(",").slice(1, -1);
             paragraph.innerHTML = item;
+            paragraph.setAttribute('contenteditable', 'true');
             // para_id += 1;
             // paragraph.id = para_ini + para_id;
             paragraphContainer.appendChild(paragraph);
@@ -98,12 +106,20 @@ const selectFile = () => {
 }
 
 document.addEventListener("keydown", function(event){
-    if (event.key === "a"){
-        piyo(hoge2);
-    }
+    // if (event.key === "a"){
+    //     for (let i = 0; i < divElements.length; i++) {
+    //         let divContent = divElements[i].textContent; // もしくは innerHTML
+    //         console.log("Div " + (i + 1) + " の中身: " + divContent);
+    //     }
+    // }
     if (event.key === "Enter"){
         let jira = document.createElement("div");
-        jira.innerHTML = element.innerHTML;
+        if(!element.innerHTML == ""){
+            jira.innerHTML = element.innerHTML;
+        }else{
+            jira.innerHTML = "&nbsp;";
+        }
+        jira.setAttribute('contenteditable', 'true');
         console.log(element.innerHTML)
         // div要素内の最初の画像を取得
         let imgElement = element.querySelector("img");
@@ -121,12 +137,10 @@ document.addEventListener("keydown", function(event){
             // 画像が見つからなかった場合の処理
             console.log("画像が見つかりませんでした。");
         }
-        if(!element.innerHTML == ""){
-            lislis.push(element.innerHTML)
-            console.log(lislis)
-            element.textContent = "";
-            hoge.appendChild(jira);
-        }
+        lislis.push(element.innerHTML)
+        console.log(lislis)
+        element.textContent = "";
+        hoge.appendChild(jira);
     }
 })
 
