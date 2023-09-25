@@ -2,6 +2,7 @@ let hoge = document.getElementById("hogehoge");
 let hoge2 = document.getElementById("hogehoge2");
 let element =  document.getElementById("myDiv");
 let divElements = document.getElementsByTagName('div');
+let activeElement = document.activeElement;
 // hoge.textContent = "Hello, js!"
 
 let image = "";
@@ -33,9 +34,11 @@ function downloadArrayAsTextFile() {
         console.log("Div " + (i + 1) + " の中身: " + divContent);
         lislis[i-1] = divContent;
     }
+    console.log("lislis=", lislis)
 
     // 配列データをテキストに変換
     var textData = lislis.join('\n');
+    console.log(textData)
 
     // Blobオブジェクトを作成
     var blob = new Blob([textData], { type: 'text/plain' });
@@ -106,13 +109,11 @@ const selectFile = () => {
 }
 
 document.addEventListener("keydown", function(event){
-    // if (event.key === "a"){
-    //     for (let i = 0; i < divElements.length; i++) {
-    //         let divContent = divElements[i].textContent; // もしくは innerHTML
-    //         console.log("Div " + (i + 1) + " の中身: " + divContent);
-    //     }
-    // }
-    if (event.key === "Enter"){
+    activeElement = document.activeElement;
+    if (event.key === "a"){
+        console.log("アクティブな要素のID属性:", activeElement.id);
+    }
+    if (event.key === "Enter" && activeElement.id === "myDiv"){
         let jira = document.createElement("div");
         if(!element.innerHTML == ""){
             jira.innerHTML = element.innerHTML;
@@ -138,9 +139,9 @@ document.addEventListener("keydown", function(event){
             console.log("画像が見つかりませんでした。");
         }
         lislis.push(element.innerHTML)
-        console.log(lislis)
         element.textContent = "";
         hoge.appendChild(jira);
+        console.log(lislis)
     }
 })
 
