@@ -6,7 +6,7 @@ let activeElement = document.activeElement;
 // hoge.textContent = "Hello, js!"
 // commit test
 // feature test
-// pull reqest
+// feature test 2
 
 let image = "";
 
