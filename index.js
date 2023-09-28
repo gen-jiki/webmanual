@@ -4,6 +4,7 @@ let element =  document.getElementById("myDiv");
 let divElements = document.getElementsByTagName('div');
 let activeElement = document.activeElement;
 // hoge.textContent = "Hello, js!"
+// commit test
 
 let image = "";
 
