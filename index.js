@@ -5,7 +5,8 @@ let divElements = document.getElementsByTagName('div');
 let activeElement = document.activeElement;
 // hoge.textContent = "Hello, js!"
 // commit test
-// branch test
+// feature test
+// pull reqest
 
 let image = "";
 
